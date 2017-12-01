@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Register</title>
+
+  <!-- Favicon : -->
+  <link rel="shortcut icon" href="http://www.michael-r-oneill.ie/assesspatients/favicon.ico">
+
+<!-- Enable Boostrap library : -->
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+<!--Custom CSS file : --> 
+  <link href="http://www.michael-r-oneill.ie/assesspatients/Stylesheet/stylesheet.css" rel="stylesheet" type="text/css">
+
+<!-- Javascript file for form validation : -->
+<script src="form-validation.js" type="text/javascript"></script>
+
+<!-- Call the Recaptcha API --> 
+<script src='https://www.google.com/recaptcha/api.js'></script>
+
+<!-- Call jQuery library for reCaptcha--> 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script>
+//Use jQuery to create the function 'recaptchaCallback' where the submit button is enabled once the reCaptcha is completed :
+function recaptchaCallback() {
+    $('#submitBtn').removeAttr('disabled');
+};
+</script>
+</head>
+
+<body>
+	<div class="container">
+  <div class="jumbotron">
+    <h1>Assesspatients</h1>      
+  </div>
+
+  <div class="row">    
+    <div class="col-md-3">
+    <ul class="nav nav-pills nav-stacked">
+        <li><a href="http://www.michael-r-oneill.ie/assesspatients/index.php">Home</a></li>
+        <li class="active"><a href="http://www.michael-r-oneill.ie/assesspatients/Register/register.php">Register</a></li>
+        <li><a href="http://www.michael-r-oneill.ie/assesspatients/Login/login.php">Login</a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Edit <span class="caret"></span></a>
+          <ul class="dropdown-menu" role="menu">
+            <li><a href="http://www.michael-r-oneill.ie/assesspatients/Edit/create.php" data-toggle="tooltip" title="Create a patient profile">
+              <!-- Create Image Button : -->
+              <img class ="editbuttons" src="http://www.michael-r-oneill.ie/assesspatients/Images/create.png">Create
+            </a></li>
+            <li class="divider"></li>
+            <li><a href="http://www.michael-r-oneill.ie/assesspatients/Edit/view.php" data-toggle="tooltip" title="View patient profile">
+              <!-- View Image Button : -->
+              <img class ="editbuttons" src="http://www.michael-r-oneill.ie/assesspatients/Images/view.png">View
+            </a></li>
+          </ul>
+        </li>
+      </ul>
+      </div>
+
+    <!-- Putt the main chunk of each page in this div ('col-md-4') : -->
+    <div class="col-md-4">
+<!-- *********************************************************************** : -->
+<h2>Register for the site</h2>
+<form action="registration.php" method="post" onsubmit="return validateForm()" name="createuserform">
+
+<!--This form uses HTML5 Form Validation :-->
+<strong>Username :</strong><br />
+<input name="username" type="text"
+title="Username must be at least 4 characters, and contain lowercase and uppercase characters."
+required pattern="(?=.*[a-z])(?=.*[A-Z]).{4,}"
+/>
+<br />
+<!-- For the username above, the required pattern is that there must be an upper case letter (?=.*[A-Z]), a lower case letter (?=.*[a-z]) and there must be at least 4 charactars .{4,} --> 
+
+<strong>First Name :</strong><br />
+  <input name="firstname" type="text"
+  title='First name must have at least 2 letters.'
+  required pattern='.{2,}'
+  >
+<br />
+<!-- For the first name above, make sure the username is at least 2 letters -->
+
+<strong>Second Name :</strong><br />
+  <input name="secondname" type="text"
+  title='Second name must have at least 2 letters.'
+  required pattern='.{2,}'
+  >
+<br />
+<!-- For the second name above, make sure the username is at least 2 letters -->
+
+<strong>Email :</strong><br />
+	<input name="email" type="email">
+<br />
+
+<strong>Password :</strong><br />
+	<input name="pwd1" type="password"
+	title="Password must contain at least 6 characters, including UPPER/lowercase and numbers." 	 
+	required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" >
+<br />
+
+<strong>Confirm password :</strong><br />
+	<input type="password" name="pwd2"
+	 title="Please enter the same Password as above." 	 
+	 required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}">
+<br /><br />
+<!-- For both passwords above, the required pattern is that it must be a digit (?=.*\d), an upper case letter (?=.*[A-Z]), a lower case letter (?=.*[a-z]) and must have 6 charactars .{6,} --> 
+
+
+<!-- reCAPTCHA button -->
+
+<p>Before submitting your details, please check the box to prove you're not a robot : </p>
+<div class="g-recaptcha" data-sitekey="6LdHAwgTAAAAADXt4NatOKBNqqf4OxFeXFfR2P4N" data-callback="recaptchaCallback"></div><br />
+<input type="submit" id="submitBtn" class="btn btn-default" disabled>
+<br /><br /><br />
+</form>
+
+<!-- *********************************************************************** : -->
+    </div>
+
+    </div>
+</div>
+
+
+
+</body>
